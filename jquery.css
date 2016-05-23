@@ -10,7 +10,6 @@
    left:0;
    margin:0;
    padding:0;
-   
    height:700px;
    width:100%;
   
@@ -75,7 +74,7 @@
 	width:500px;
 	height:50px;
 	left:30%;
-	bottom:40%;
+	bottom:80%;
 	background-color:blue;
 	color:white;
 	text-align: center;
@@ -84,13 +83,40 @@
 
 .health {
 	position:absolute;
-	width:250;
-	height:50px;
-	background-color:red;
+	border: 5px solid black;
+	width:200px;
+	height:25px;
+	background-color:green;
 	color:black;
 	text-align: center;
-	}
+}
 
 #healthBoss1 {
-	bottom:40%;
+	bottom: 62%;
+	left:22%;
+}
+
+#healthBoss2 {
+	bottom: 40%;
+	left:22%;
+}
+
+#healthBoss3 {
+	bottom: 15%;
+	left:22%;
+}
+
+#capHealth {
+	bottom: 62%;
+	left:62%;
+}
+
+#ironmanHealth {
+	bottom: 40%;
+	left:62%;
+}
+
+#deadpoolHealth {
+	bottom: 15%;
+	left:62%;
 }
