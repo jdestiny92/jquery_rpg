@@ -86,7 +86,7 @@
 	border: 5px solid black;
 	width:200px;
 	height:25px;
-	background-color:green;
+	background-color:#66cc00;
 	
 }
 
@@ -119,3 +119,43 @@
 	bottom: 15%;
 	left:62%;
 }
+
+.box {
+	position: absolute;
+	background-color: black;
+	color:white;
+	width: 100px;
+	height:25px;
+	text-align: center;
+}
+
+#ultronbox1 {
+	bottom: 58.5%;
+	left:22%;
+}
+
+#ultronbox2 {
+	bottom: 37%;
+	left:22%;
+}
+
+#ultronbox3 {
+	bottom: 12%;
+	left:22%;
+}
+
+#capbox{
+	right: 23.3%;
+	bottom:58.5%;
+}
+
+#ironmanbox{
+	right: 23.3%;
+	bottom:37%;
+}
+
+#deadpoolbox{
+	right: 23.3%;
+	bottom:12%;
+}
+
