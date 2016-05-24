@@ -16,6 +16,7 @@ var deadpoolHealth = 850;
 var ultronHealth1 = 1000;
 var ultronHealth2 = 1000;
 var ultronHealth3 = 1000;
+
 $('#ultronbox1').html('Health: ' + ultronHealth1);
 $('#ultronbox2').html('Health: ' + ultronHealth2);
 $('#ultronbox3').html('Health: ' + ultronHealth3);
@@ -80,9 +81,13 @@ if(choice=="deadpool"){
 	
 }
 
+	if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+
 });
 
-};	
+};
+
+
 
 
 //Hero MainAttack Sequence
@@ -138,6 +143,7 @@ function heroAttackSequence(){
 			$('#healthBoss1').remove();
 			new Audio('impossible.mp3').play();
 		};
+		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 		return;
 		
 		
@@ -157,6 +163,7 @@ function heroAttackSequence(){
 			$('#healthBoss2').remove();
 			new Audio('impossible.mp3').play();
 		};
+		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 		return;
 		
 		
@@ -176,6 +183,7 @@ function heroAttackSequence(){
 			$('#healthBoss3').remove();
 			new Audio('impossible.mp3').play();
 		};
+		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 		return;
 		
 		
@@ -206,6 +214,7 @@ function heroAttackSequence(){
 			$('#healthBoss1').remove();
 			new Audio('impossible.mp3').play();
 		};
+		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 		return;
 		
 		
@@ -224,6 +233,7 @@ function heroAttackSequence(){
 			$('#healthBoss2').remove();
 			new Audio('impossible.mp3').play();
 		};
+		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 		return;
 		
 		
@@ -237,11 +247,13 @@ function heroAttackSequence(){
 		ultronHealth3 = ultronHealth3 - ironmanAttack;
 		$('#ultronbox3').html('Health: ' + ultronHealth3);
 		if(ultronHealth3 <= 0){
+			i++;
 			$('#ultron3').remove();
 			$('#ultronbox3').remove();
 			$('#healthBoss3').remove();
 			new Audio('impossible.mp3').play();
 		};
+		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 		return;
 		
 		
@@ -273,9 +285,12 @@ function heroAttackSequence(){
 			$('#healthBoss1').remove();
 			new Audio('impossible.mp3').play();
 		};
+		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 		return;
 		
 		
+	});
+
 	});
 
 	$('#ultron2').on('click', function(){
@@ -291,6 +306,7 @@ function heroAttackSequence(){
 			$('#healthBoss2').remove();
 			new Audio('impossible.mp3').play();
 		};
+		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 		return;
 		
 		
@@ -309,16 +325,17 @@ function heroAttackSequence(){
 			$('#healthBoss3').remove();
 			new Audio('impossible.mp3').play();
 		};
+		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 		return;
 		
 		
 	});
-});
 
 
 
 
-}
+
+};
 
 
 
@@ -328,6 +345,11 @@ $('.boss').on('click', function(){
 
 	bossAttackSequence();
 });
+
+if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){
+	location.replace('win.html');
+}
+
 
 
 
