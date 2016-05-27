@@ -55,7 +55,7 @@ if(ironmanHealth < 0){
 	$('#ironmanlHealth').remove();
 	new Audio('').play();
 };
-if(window.capHealth <=0 && window.ironmanHealth <=0 && deadpoolHealth <=0){location.replace('loss.html');};
+if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
 // Variables + Starting Conditions
 
 
@@ -124,7 +124,7 @@ function deadpoolAttackStats(){
 	};
 	return;
 };
-if(window.capHealth <=0 && window.ironmanHealth <=0 && deadpoolHealth <=0){location.replace('loss.html');};
+if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
 //AI Attack Sequence Goes Here
 
 // Boss Attack Sequence
@@ -402,7 +402,7 @@ $('#deadpool').on('click', function(){
 	};
 });
 
-if(window.capHealth <=0 && window.ironmanHealth <=0 && deadpoolHealth <=0){location.replace('loss.html');};
+if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
 
 
 
