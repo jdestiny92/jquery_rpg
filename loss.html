@@ -20,7 +20,8 @@
     <!--CSS-->
     <style>
     
-    img {position: relative; width: 100%; height: 100%;}
+    img {position: relative; background-size: cover; width:100%; height:100%;}
+    body{background-color: black};
     </style>
  </head>
 
@@ -33,11 +34,14 @@
 <img src="ultron_background.jpg" />
 
 <script>
-var retry = confirm('RETRY?').delay(2000);
+ setTimeout(function retry() {
+        var retry = confirm('Retry?');
+        if(retry==true){
+            location.replace('index.html');
+        };
+    }, 7000);
 
-if(retry==true){
-    location.replace('index.html');
-};
+    retry();
 </script>
 
 </body>

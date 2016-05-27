@@ -55,6 +55,7 @@ if(ironmanHealth < 0){
 	$('#ironmanlHealth').remove();
 	new Audio('').play();
 };
+if(window.capHealth <=0 && window.ironmanHealth <=0 && deadpoolHealth <=0){location.replace('loss.html');};
 // Variables + Starting Conditions
 
 
@@ -123,7 +124,7 @@ function deadpoolAttackStats(){
 	};
 	return;
 };
-
+if(window.capHealth <=0 && window.ironmanHealth <=0 && deadpoolHealth <=0){location.replace('loss.html');};
 //AI Attack Sequence Goes Here
 
 // Boss Attack Sequence
@@ -140,48 +141,6 @@ ultronCrit = Math.floor(Math.random()*100);
 if(ultronCrit <= 15){
 		ultronAttack = Math.floor(ultronAttack + .25*ultronAttack);
 	};
-
-if(window.deadpoolHeatlh<0){
-	var option1 = ['cap', 'ironman', 'cap'];
-	var option2 = ['cap', 'ironman', 'ironman'];
-
-	var coinflip3 = Math.floor(Math.random()*2);
-
-	if(coinflip3==0){
-		heroes = option1;
-	}
-	else{
-		heroes = option2;
-	};
-};
-
-if(window.capHeatlh<0){
-	var option1 = ['ironman', 'ironman', 'deadpool'];
-	var option2 = ['deadpool', 'ironman', 'deadpool'];
-
-	var coinflip1 = Math.floor(Math.random()*2);
-
-	if(coinflip1==0){
-		heroes = option1;
-	}
-	else{
-		heroes = option2;
-	};
-};
-
-if(window.ironmanHeatlh<0){
-	var option1 = ['cap', 'cap', 'deadpool'];
-	var option2 = ['cap', 'deadpool', 'deadpool'];
-
-	var coinflip2 = Math.floor(Math.random()*2);
-
-	if(coinflip2==0){
-		heroes = option1;
-	}
-	else{
-		heroes = option2;
-	};
-};
 
 if(choice=="cap"){
 	$('#attackMessage').show(1000, function(){
@@ -203,6 +162,7 @@ if(choice=="cap"){
 		$('#capHealth').remove();
 		new Audio('letdown.mp3').play();
 	};
+	if(capHealth <=0 && ironmanHealth <=0 && deadpoolHealth <=0){location.replace('loss.html');};
 	});
 	
 };
@@ -229,6 +189,7 @@ if(choice=="ironman"){
 	};
 	
 });
+
 };
 
 if(choice=="deadpool"){
@@ -256,9 +217,6 @@ if(choice=="deadpool"){
 };
 
 };
-
-
-
 
 
 //Cap Attack Sequence
@@ -444,7 +402,7 @@ $('#deadpool').on('click', function(){
 	};
 });
 
-
+if(window.capHealth <=0 && window.ironmanHealth <=0 && deadpoolHealth <=0){location.replace('loss.html');};
 
 
 
