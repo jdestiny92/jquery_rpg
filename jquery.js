@@ -68,8 +68,10 @@ function capAttackStats(){
 		capAttack = Math.floor(capAttack + .25*capAttack);
 	};
 	$('#attackMessage').show();
-	new Audio('shieldslash.mp3').play();
+	document.getElementById('capAttack').play();
 	if(capCrit <= 25){
+		document.getElementById('capAttack').pause();
+		document.getElementById('capCrit').play();
 		$('#attackMessage').html('Captain America did a critical hit for ' + capAttack + ' damage');
 	}
 	else{
@@ -88,8 +90,10 @@ function ironmanAttackStats(){
 		ironmanAttack = Math.floor(ironmanAttack + .25*ironmanAttack);
 	};
 	$('#attackMessage').show();
-	new Audio('unibeam.mp3').play();
+	document.getElementById('ironmanAttack').play();
 	if(ironmanCrit <= 20){
+		document.getElementById('ironmanAttack').pause();
+		document.getElementById('ironmanCrit').play();
 		$('#attackMessage').html('Ironman did a critical hit for ' + ironmanAttack + ' damage');
 	}
 	else{
@@ -137,6 +141,48 @@ if(ultronCrit <= 15){
 		ultronAttack = Math.floor(ultronAttack + .25*ultronAttack);
 	};
 
+if(window.deadpoolHeatlh<0){
+	var option1 = ['cap', 'ironman', 'cap'];
+	var option2 = ['cap', 'ironman', 'ironman'];
+
+	var coinflip3 = Math.floor(Math.random()*2);
+
+	if(coinflip3==0){
+		heroes = option1;
+	}
+	else{
+		heroes = option2;
+	};
+};
+
+if(window.capHeatlh<0){
+	var option1 = ['ironman', 'ironman', 'deadpool'];
+	var option2 = ['deadpool', 'ironman', 'deadpool'];
+
+	var coinflip1 = Math.floor(Math.random()*2);
+
+	if(coinflip1==0){
+		heroes = option1;
+	}
+	else{
+		heroes = option2;
+	};
+};
+
+if(window.ironmanHeatlh<0){
+	var option1 = ['cap', 'cap', 'deadpool'];
+	var option2 = ['cap', 'deadpool', 'deadpool'];
+
+	var coinflip2 = Math.floor(Math.random()*2);
+
+	if(coinflip2==0){
+		heroes = option1;
+	}
+	else{
+		heroes = option2;
+	};
+};
+
 if(choice=="cap"){
 	$('#attackMessage').show(1000, function(){
 	document.getElementById('ultronAttack').play();
@@ -155,7 +201,7 @@ if(choice=="cap"){
 		$('#cap').remove();
 		$('#capbox').remove();
 		$('#capHealth').remove();
-		new Audio('mybest.mp3').play();
+		new Audio('letdown.mp3').play();
 	};
 	});
 	
