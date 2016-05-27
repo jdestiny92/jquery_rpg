@@ -20,27 +20,24 @@
     <!--CSS-->
     <style>
     
-    img {position: relative; width: 80%;}
+    img {position: relative; width: 100%; height: 100%;}
     </style>
  </head>
 
 <body>
 
-<audio id="themeMusic" src="champions.mp3" autoplay loop></audio>
+<audio id="themeMusic" src="extinction.mp3" autoplay loop></audio>
 
 
 
-<img src="deadpool_background.jpg" />
+<img src="ultron_background.jpg" />
 
 <script>
-    setTimeout(function retry() {
-        var retry = confirm('Play Again?');
-        if(retry==true){
-            location.replace('index.html');
-        };
-    }, 7000);
+var retry = confirm('RETRY?').delay(2000);
 
-    retry();
+if(retry==true){
+    location.replace('index.html');
+};
 </script>
 
 </body>

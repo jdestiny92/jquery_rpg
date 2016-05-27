@@ -1,361 +1,402 @@
 $(document).ready(function(){
 //document ready, main wrapper
 
-$('#attackMessage').hide();
 
+
+//Variables + Starting Conditions
+$('#attackMessage').hide();
 function reset(){
 	$('.hero').css('border', '');
 	$('.boss').css('border', '');
 	$('#attackMessage').delay(2000).fadeOut();
 };
-
-//Variables
+var fight = [];
+var hero;
+var boss;
 var capHealth = 1100;
 var ironmanHealth = 950;
 var deadpoolHealth = 850;
 var ultronHealth1 = 1000;
 var ultronHealth2 = 1000;
 var ultronHealth3 = 1000;
-
 $('#ultronbox1').html('Health: ' + ultronHealth1);
 $('#ultronbox2').html('Health: ' + ultronHealth2);
 $('#ultronbox3').html('Health: ' + ultronHealth3);
 $('#capbox').html('Health: ' + capHealth);
 $('#ironmanbox').html('Health: ' + ironmanHealth);
 $('#deadpoolbox').html('Health: ' + deadpoolHealth);
+$('.boss').on('mouseenter', function(){
+		$(this).css('border', '3px solid red');
+	});
+$('.boss').on('mouseleave', function(){
+		$(this).css('border', '');
+	});
+$('.hero').on('click', function(){
+	$(this).css('border', '3px solid blue');
+});
+$('.boss').on('click', function(){
+	$('.hero').css('border', '');
+});
+if(deadpoolHealth < 0){
+	$('#deadpool').remove();
+	$('#deadpoolbox').remove();
+	$('#deadpoolHealth').remove();
+	new Audio('wrongButton.mp3').play();
+};
+if(capHealth < 0){
+	$('#cap').remove();
+	$('#capbox').remove();
+	$('#capHealth').remove();
+	new Audio('').play();
+};
+if(ironmanHealth < 0){
+	$('#ironman').remove();
+	$('#ironmanbox').remove();
+	$('#ironmanlHealth').remove();
+	new Audio('').play();
+};
+// Variables + Starting Conditions
 
 
+function capAttackStats(){
+	// Random Attack Values
+	capAttack = Math.floor(Math.random()*(300-250+1)+250);
+	//Random Crit
+	capCrit =  Math.floor(Math.random()*100);
+	//Result of Crits
+	if(capCrit <= 25){
+		capAttack = Math.floor(capAttack + .25*capAttack);
+	};
+	$('#attackMessage').show();
+	new Audio('shieldslash.mp3').play();
+	if(capCrit <= 25){
+		$('#attackMessage').html('Captain America did a critical hit for ' + capAttack + ' damage');
+	}
+	else{
+		$('#attackMessage').html('Captain America attacked for ' + capAttack + ' damage');
+	};
+	return;
+};
+
+function ironmanAttackStats(){
+	//Random Attack Values
+	ironmanAttack = Math.floor(Math.random()*(400-300+1)+300);
+	//Random Crit
+	ironmanCrit =  Math.floor(Math.random()*100);
+	//Result of Crits
+	if(ironmanCrit <= 20){
+		ironmanAttack = Math.floor(ironmanAttack + .25*ironmanAttack);
+	};
+	$('#attackMessage').show();
+	new Audio('unibeam.mp3').play();
+	if(ironmanCrit <= 20){
+		$('#attackMessage').html('Ironman did a critical hit for ' + ironmanAttack + ' damage');
+	}
+	else{
+		$('#attackMessage').html('Ironman attacked for ' + ironmanAttack + ' damage');
+	};
+	return;
+};
+
+function deadpoolAttackStats(){
+	//Random Attack Values
+	deadpoolAttack = Math.floor(Math.random()*(300-200+1)+200);
+	//Random Crit
+	deadpoolCrit =  Math.floor(Math.random()*100);
+	//Result of Crits
+	if(deadpoolCrit <= 25){
+		deadpoolAttack = Math.floor(deadpoolAttack + .25*deadpoolAttack);
+	};
+	$('#attackMessage').show();
+	document.getElementById('deadpoolAttack').play();
+	if(deadpoolCrit <= 25){
+		document.getElementById('deadpoolAttack').pause();
+		document.getElementById('deadpoolCrit').play();
+		$('#attackMessage').html('Deadpool did a critical hit for ' + deadpoolAttack + ' damage');
+	}
+	else{
+		$('#attackMessage').html('Deadpool attacked for ' + deadpoolAttack + ' damage');
+	};
+	return;
+};
+
+//AI Attack Sequence Goes Here
 
 // Boss Attack Sequence
 function bossAttackSequence(){
 
-$(document).ready(function(){
+heroes = ["cap", "ironman", "deadpool"];
 
-var heroes = ["cap", "ironman", "deadpool"];
+choice = heroes[Math.floor(Math.random()*3)];
 
-var choice = heroes[Math.floor(Math.random()*3)];
+ultronAttack = Math.floor(Math.random()*(300-200+1)+200);
 
-var ultronAttack = Math.floor(Math.random()*(300-200+1)+200);
-
-var ultronCrit = Math.floor(Math.random()*100);
+ultronCrit = Math.floor(Math.random()*100);
 
 if(ultronCrit <= 15){
 		ultronAttack = Math.floor(ultronAttack + .25*ultronAttack);
-	}
-
-
+	};
 
 if(choice=="cap"){
-	$('#attackMessage').show(1500, function(){
-	$('#attackMessage').html('Ultron attacked Captain America for ' + ultronAttack + ' damage');
+	$('#attackMessage').show(1000, function(){
+	document.getElementById('ultronAttack').play();
+	if(ultronCrit <= 15){
+		document.getElementById('ultronAttack').pause();
+		document.getElementById('ultronCrit').play();
+		$('#attackMessage').html('Ultron did a critical hit on Captain America for ' + ultronAttack + ' damage');
+	}
+	else{
+		$('#attackMessage').html('Ultron attacked Captain America for ' + ultronAttack + ' damage');
+	};
 	reset();
-	new Audio('laugh.mp3').play();
 	capHealth = capHealth - ultronAttack;
 	$('#capbox').html('Health: ' + capHealth);
-	return;
+	if(capHealth < 0){
+		$('#cap').remove();
+		$('#capbox').remove();
+		$('#capHealth').remove();
+		new Audio('mybest.mp3').play();
+	};
 	});
 	
-}
+};
 
 if(choice=="ironman"){
-	$('#attackMessage').show(1500, function(){
-	$('#attackMessage').html('Ultron attacked Ironman for ' + ultronAttack + ' damage');
+	$('#attackMessage').show(1000, function(){
+	document.getElementById('ultronAttack').play();
+	if(ultronCrit <= 15){
+		document.getElementById('ultronAttack').pause();
+		document.getElementById('ultronCrit').play();
+		$('#attackMessage').html('Ultron did a critical hit on Ironman for ' + ultronAttack + ' damage');
+	}
+	else{
+		$('#attackMessage').html('Ultron attacked Ironman for ' + ultronAttack + ' damage');
+	};
 	reset();
-	new Audio('laugh.mp3').play();
 	ironmanHealth = ironmanHealth - ultronAttack;
 	$('#ironmanbox').html('Health: ' + ironmanHealth);
-	return;
-	});
+	if(ironmanHealth < 0){
+		$('#ironman').remove();
+		$('#ironmanbox').remove();
+		$('#ironmanHealth').remove();
+		new Audio('impossible2.mp3').play();
+	};
 	
-}
+});
+};
 
 if(choice=="deadpool"){
-	$('#attackMessage').show(1500, function(){
-	$('#attackMessage').html('Ultron attacked Deadpool for ' + ultronAttack + ' damage');
+	$('#attackMessage').show(1000, function(){
+	document.getElementById('ultronAttack').play();
+	if(ultronCrit <= 15){
+		document.getElementById('ultronAttack').pause();
+		document.getElementById('ultronCrit').play();
+		$('#attackMessage').html('Ultron did a critical hit on Deadpool for ' + ultronAttack + ' damage');
+	}
+	else{
+		$('#attackMessage').html('Ultron attacked Deadpool for ' + ultronAttack + ' damage');
+	};
 	reset();
-	new Audio('laugh.mp3').play();
 	deadpoolHealth = deadpoolHealth - ultronAttack;
 	$('#deadpoolbox').html('Health: ' + deadpoolHealth);
-	return;
+	if(deadpoolHealth < 0){
+		$('#deadpool').remove();
+		$('#deadpoolbox').remove();
+		$('#deadpoolHealth').remove();
+		new Audio('wrongButton.mp3').play();
+		};
 	});
 	
-}
-
-	if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-
-});
+};
 
 };
 
 
 
 
-//Hero MainAttack Sequence
-function heroAttackSequence(){
 
-	//Critical Hit Percentages
-	var capCrit =  Math.floor(Math.random()*100);
-	var ironmanCrit =  Math.floor(Math.random()*100);
-	var deadpoolCrit =  Math.floor(Math.random()*100);
-
-	// Random Attack Values
-	var capAttack = Math.floor(Math.random()*(300-250+1)+250);
-	var ironmanAttack = Math.floor(Math.random()*(400-300+1)+300);
-	var deadpoolAttack = Math.floor(Math.random()*(300-200+1)+200);
+//Cap Attack Sequence
+$('#cap').on('click', function(){
 	
-
-	// Result of Crits
-	if(capCrit <= 25){
-		capAttack = Math.floor(capAttack + .25*capAttack);
-	}
-
-	if(ironmanCrit <= 20){
-		ironmanAttack = Math.floor(ironmanAttack + .25*ironmanAttack);
-	}
-
-	if(deadpoolCrit <= 25){
-		deadpoolAttack = Math.floor(deadpoolAttack + .25*deadpoolAttack);
-	}
-
-	// Cap Attack Sequence
-	$('#cap').on('click', function(){
-	$(this).css('border', '3px solid blue');
+	question1 = prompt('Would you like to attack Ultron 1, 2, or 3? (Type the #)');
 	
-	$('.boss').on('mouseenter', function(){
-		$(this).css('border', '3px solid red');
-	});
-	
-	$('.boss').on('mouseleave', function(){
-		$(this).css('border', '');
-	});
-
-	$('#ultron1').on('click', function(){
-		
-		$('#attackMessage').show();
-		$('#attackMessage').html('Captain America attacked for ' + capAttack + ' damage');
-		reset();
-		new Audio('shieldslash.mp3').play();
-		ultronHealth1 = ultronHealth1 - capAttack;
-		$('#ultronbox1').html('Health: ' + ultronHealth1);
-		if(ultronHealth1 <= 0){
-			$('#ultron1').remove();
-			$('#ultronbox1').remove();
-			$('#healthBoss1').remove();
-			new Audio('impossible.mp3').play();
-		};
-		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-		return;
-		
-		
-	});
-
-	$('#ultron2').on('click', function(){
-		
-		$('#attackMessage').show();
-		$('#attackMessage').html('Captain America attacked for ' + capAttack + ' damage');
-		reset();
-		new Audio('shieldslash.mp3').play();
-		ultronHealth2 = ultronHealth2 - capAttack;
-		$('#ultronbox2').html('Health: ' + ultronHealth2);
-		if(ultronHealth2 <= 0){
-			$('#ultron2').remove();
-			$('#ultronbox2').remove();
-			$('#healthBoss2').remove();
-			new Audio('impossible.mp3').play();
-		};
-		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-		return;
-		
-		
-	});
-
-	$('#ultron3').on('click', function(){
-		
-		$('#attackMessage').show();
-		$('#attackMessage').html('Captain America attacked for ' + capAttack + ' damage');
-		reset();
-		new Audio('shieldslash.mp3').play();
-		ultronHealth3 = ultronHealth3 - capAttack;
-		$('#ultronbox3').html('Health: ' + ultronHealth3);
-		if(ultronHealth3 <= 0){
-			$('#ultron3').remove();
-			$('#ultronbox3').remove();
-			$('#healthBoss3').remove();
-			new Audio('impossible.mp3').play();
-		};
-		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-		return;
-		
-		
-	});
-});
-	//Ironman Attack Sequence
-	$('#ironman').on('click', function(){
-	$(this).css('border', '3px solid blue');
-	
-	$('.boss').on('mouseenter', function(){
-		$(this).css('border', '3px solid red');
-	});
-	
-	$('.boss').on('mouseleave', function(){
-		$(this).css('border', '');
-	});
-
-	$('#ultron1').on('click', function(){
-		$('#attackMessage').show();
-		$('#attackMessage').html('Ironman attacked for ' + ironmanAttack + ' damage');
-		reset();
-		new Audio('unibeam.mp3').play();
-		ultronHealth1 = ultronHealth1 - ironmanAttack;
-		$('#ultronbox1').html('Health: ' + ultronHealth1);
-		if(ultronHealth1 <= 0){
-			$('#ultron1').remove();
-			$('#ultronbox1').remove();
-			$('#healthBoss1').remove();
-			new Audio('impossible.mp3').play();
-		};
-		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-		return;
-		
-		
-	});
-
-	$('#ultron2').on('click', function(){
-		$('#attackMessage').show();
-		$('#attackMessage').html('Ironman attacked for ' + ironmanAttack + ' damage');
-		reset();
-		new Audio('unibeam.mp3').play();
-		ultronHealth2 = ultronHealth2 - ironmanAttack;
-		$('#ultronbox2').html('Health: ' + ultronHealth2);
-		if(ultronHealth2 <= 0){
-			$('#ultron2').remove();
-			$('#ultronbox2').remove();
-			$('#healthBoss2').remove();
-			new Audio('impossible.mp3').play();
-		};
-		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-		return;
-		
-		
-	});
-
-	$('#ultron3').on('click', function(){
-		$('#attackMessage').show();
-		$('#attackMessage').html('Ironman attacked for ' + ironmanAttack + ' damage');
-		reset();
-		new Audio('unibeam.mp3').play();
-		ultronHealth3 = ultronHealth3 - ironmanAttack;
-		$('#ultronbox3').html('Health: ' + ultronHealth3);
-		if(ultronHealth3 <= 0){
-			i++;
-			$('#ultron3').remove();
-			$('#ultronbox3').remove();
-			$('#healthBoss3').remove();
-			new Audio('impossible.mp3').play();
-		};
-		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-		return;
-		
-		
-	});
-});
-	//Deadpool Attack Sequence
-	$('#deadpool').on('click', function(){
-	
-	$(this).css('border', '3px solid blue');
-	
-	$('.boss').on('mouseenter', function(){
-		$(this).css('border', '3px solid red');
-	});
-	
-	$('.boss').on('mouseleave', function(){
-		$(this).css('border', '');
-	});
-
-	$('#ultron1').on('click', function(){
-		$('#attackMessage').show();
-		$('#attackMessage').html('Deadpool attacked for ' + deadpoolAttack + ' damage');
-		reset();
-		new Audio('bangbang.mp3').play();
-		ultronHealth1 = ultronHealth1 - deadpoolAttack;
-		$('#ultronbox1').html('Health: ' + ultronHealth1);
-		if(ultronHealth1 <= 0){
-			$('#ultron1').remove();
-			$('#ultronbox1').remove();
-			$('#healthBoss1').remove();
-			new Audio('impossible.mp3').play();
-		};
-		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-		return;
-		
-		
-	});
-
-	});
-
-	$('#ultron2').on('click', function(){
-		$('#attackMessage').show();
-		$('#attackMessage').html('Deadpool attacked for ' + deadpoolAttack + ' damage');
-		reset();
-		new Audio('bangbang.mp3').play();
-		ultronHealth2 = ultronHealth2 - deadpoolAttack;
-		$('#ultronbox2').html('Health: ' + ultronHealth2);
-		if(ultronHealth2 <= 0){
-			$('#ultron2').remove();
-			$('#ultronbox2').remove();
-			$('#healthBoss2').remove();
-			new Audio('impossible.mp3').play();
-		};
-		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-		return;
-		
-		
-	});
-
-	$('#ultron3').on('click', function(){
-		$('#attackMessage').show();
-		$('#attackMessage').html('Deadpool attacked for ' + deadpoolAttack + ' damage');
-		reset();
-		new Audio('bangbang.mp3').play();
-		ultronHealth3 = ultronHealth3 - deadpoolAttack;
-		$('#ultronbox3').html('Health: ' + ultronHealth3);
-		if(ultronHealth3 <= 0){
-			$('#ultron3').remove();
-			$('#ultronbox3').remove();
-			$('#healthBoss3').remove();
-			new Audio('impossible.mp3').play();
-		};
-		if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
-		return;
-		
-		
-	});
-
-
-
-
-
-};
-
-
-
-heroAttackSequence();
-
-$('.boss').on('click', function(){
-
-	bossAttackSequence();
+	if(question1==1){
+			capAttackStats();
+			ultronHealth1 = ultronHealth1 - capAttack;
+			$('#ultronbox1').html('Health: ' + ultronHealth1);		
+			reset();
+			if(ultronHealth1 > 0){
+				bossAttackSequence();
+			}
+			else{
+				bossAttackSequence();
+				$('#ultron1').remove();
+				$('#ultronbox1').remove();
+				$('#healthBoss1').remove();
+				new Audio('impossible.mp3').play();
+			};
+			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+			return;
+						};
+	if(question1==2){
+			capAttackStats();
+			ultronHealth2 = ultronHealth2 - capAttack;
+			$('#ultronbox2').html('Health: ' + ultronHealth2);		
+			reset();
+			if(ultronHealth2 > 0){
+				bossAttackSequence();
+			}
+			else{
+				bossAttackSequence();
+				$('#ultron2').remove();
+				$('#ultronbox2').remove();
+				$('#healthBoss2').remove();
+				new Audio('impossible.mp3').play();
+			};
+			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+			return;
+						};
+	if(question1==3){
+			capAttackStats();
+			ultronHealth3 = ultronHealth3 - capAttack;
+			$('#ultronbox3').html('Health: ' + ultronHealth3);		
+			reset();
+			if(ultronHealth3 > 0){
+				bossAttackSequence();
+			}
+			else{
+				bossAttackSequence();
+				$('#ultron3').remove();
+				$('#ultronbox3').remove();
+				$('#healthBoss3').remove();
+				new Audio('impossible.mp3').play();
+			};
+			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+			return;
+	};
 });
 
-if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){
-	location.replace('win.html');
-}
+//Ironman Attack Sequence
+$('#ironman').on('click', function(){
+	
+	question2 = prompt('Would you like to attack Ultron 1, 2, or 3? (Type the #)');
+	
+	if(question2==1){
+			ironmanAttackStats();
+			ultronHealth1 = ultronHealth1 - ironmanAttack;
+			$('#ultronbox1').html('Health: ' + ultronHealth1);		
+			reset();
+			if(ultronHealth1 > 0){
+				bossAttackSequence();
+			}
+			else{
+				bossAttackSequence();
+				$('#ultron1').remove();
+				$('#ultronbox1').remove();
+				$('#healthBoss1').remove();
+				new Audio('impossible.mp3').play();
+			};
+			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+			return;
+						};
+	if(question2==2){
+			ironmanAttackStats();
+			ultronHealth2 = ultronHealth2 - ironmanAttack;
+			$('#ultronbox2').html('Health: ' + ultronHealth2);		
+			reset();
+			if(ultronHealth2 > 0){
+				bossAttackSequence();
+			}
+			else{
+				bossAttackSequence();
+				$('#ultron2').remove();
+				$('#ultronbox2').remove();
+				$('#healthBoss2').remove();
+				new Audio('impossible.mp3').play();
+			};
+			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+			return;
+						};
+	if(question2==3){
+			ironmanAttackStats();
+			ultronHealth3 = ultronHealth3 - ironmanAttack;
+			$('#ultronbox3').html('Health: ' + ultronHealth3);		
+			reset();
+			if(ultronHealth3 > 0){
+				bossAttackSequence();
+			}
+			else{
+				bossAttackSequence();
+				$('#ultron3').remove();
+				$('#ultronbox3').remove();
+				$('#healthBoss3').remove();
+				new Audio('impossible.mp3').play();
+			};
+			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+			return;
+	};
+});
 
-
-
-
-
-
-
+//Deadpool Attack Sequence
+$('#deadpool').on('click', function(){
+	
+	question3 = prompt('Would you like to attack Ultron 1, 2, or 3? (Type the #)');
+	
+	if(question3==1){
+			deadpoolAttackStats();
+			ultronHealth1 = ultronHealth1 - deadpoolAttack;
+			$('#ultronbox1').html('Health: ' + ultronHealth1);		
+			reset();
+			if(ultronHealth1 > 0){
+				bossAttackSequence();
+			}
+			else{
+				bossAttackSequence();
+				$('#ultron1').remove();
+				$('#ultronbox1').remove();
+				$('#healthBoss1').remove();
+				new Audio('impossible.mp3').play();
+			};
+			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+			return;
+						};
+	if(question3==2){
+			deadpoolAttackStats();
+			ultronHealth2 = ultronHealth2 - deadpoolAttack;
+			$('#ultronbox2').html('Health: ' + ultronHealth2);		
+			reset();
+			if(ultronHealth2 > 0){
+				bossAttackSequence();
+			}
+			else{
+				bossAttackSequence();
+				$('#ultron2').remove();
+				$('#ultronbox2').remove();
+				$('#healthBoss2').remove();
+				new Audio('impossible.mp3').play();
+			};
+			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+			return;
+						};
+	if(question3==3){
+			deadpoolAttackStats();
+			ultronHealth3 = ultronHealth3 - deadpoolAttack;
+			$('#ultronbox3').html('Health: ' + ultronHealth3);		
+			reset();
+			if(ultronHealth3 > 0){
+				bossAttackSequence();
+			}
+			else{
+				bossAttackSequence();
+				$('#ultron3').remove();
+				$('#ultronbox3').remove();
+				$('#healthBoss3').remove();
+				new Audio('impossible.mp3').play();
+			};
+			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
+			return;
+	};
+});
 
 
 
@@ -368,3 +409,5 @@ if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){
 
 
 });
+//Document on ready ends here!
+
