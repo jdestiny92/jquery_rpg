@@ -2,17 +2,16 @@ $(document).ready(function(){
 //document ready, main wrapper
 
 
-
-//Variables + Starting Conditions
+//Variables + Starting Conditions: Beginning
 $('#attackMessage').hide();
+
 function reset(){
 	$('.hero').css('border', '');
 	$('.boss').css('border', '');
 	$('#attackMessage').delay(2000).fadeOut();
 };
-var fight = [];
-var hero;
-var boss;
+
+var heroes = ["cap", "ironman", "deadpool"];
 var capHealth = 1100;
 var ironmanHealth = 950;
 var deadpoolHealth = 850;
@@ -37,28 +36,12 @@ $('.hero').on('click', function(){
 $('.boss').on('click', function(){
 	$('.hero').css('border', '');
 });
-if(deadpoolHealth < 0){
-	$('#deadpool').remove();
-	$('#deadpoolbox').remove();
-	$('#deadpoolHealth').remove();
-	new Audio('wrongButton.mp3').play();
-};
-if(capHealth < 0){
-	$('#cap').remove();
-	$('#capbox').remove();
-	$('#capHealth').remove();
-	new Audio('').play();
-};
-if(ironmanHealth < 0){
-	$('#ironman').remove();
-	$('#ironmanbox').remove();
-	$('#ironmanlHealth').remove();
-	new Audio('').play();
-};
+
 if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
-// Variables + Starting Conditions
+// Variables + Starting Conditions: End
 
 
+//Cap Attack + Critical Hit Value Generation
 function capAttackStats(){
 	// Random Attack Values
 	capAttack = Math.floor(Math.random()*(300-250+1)+250);
@@ -81,6 +64,7 @@ function capAttackStats(){
 	return;
 };
 
+//Ironman Attack + Critical Hit Value Generation
 function ironmanAttackStats(){
 	//Random Attack Values
 	ironmanAttack = Math.floor(Math.random()*(400-300+1)+300);
@@ -103,6 +87,7 @@ function ironmanAttackStats(){
 	return;
 };
 
+//Deadpool Attack + Critical Hit Value Generation
 function deadpoolAttackStats(){
 	//Random Attack Values
 	deadpoolAttack = Math.floor(Math.random()*(300-200+1)+200);
@@ -125,14 +110,14 @@ function deadpoolAttackStats(){
 	return;
 };
 if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
-//AI Attack Sequence Goes Here
 
-// Boss Attack Sequence
+
+// Boss/Enemy Attack Event
 function bossAttackSequence(){
 
-heroes = ["cap", "ironman", "deadpool"];
+console.log(heroes[0] + ' ' + heroes[1] + ' ' + heroes[2]);
 
-choice = heroes[Math.floor(Math.random()*3)];
+choice = heroes[Math.floor(Math.random()*(heroes.length))];
 
 ultronAttack = Math.floor(Math.random()*(400-350+1)+350);
 
@@ -142,7 +127,7 @@ if(ultronCrit <= 15){
 		ultronAttack = Math.floor(ultronAttack + .25*ultronAttack);
 	};
 
-if(choice=="cap"){
+if(choice==="cap"){
 	$('#attackMessage').show(1000, function(){
 	document.getElementById('ultronAttack').play();
 	if(ultronCrit <= 15){
@@ -157,6 +142,7 @@ if(choice=="cap"){
 	capHealth = capHealth - ultronAttack;
 	$('#capbox').html('Health: ' + capHealth);
 	if(capHealth < 0){
+		heroes.splice(heroes.indexOf('cap'),1);
 		$('#cap').remove();
 		$('#capbox').remove();
 		$('#capHealth').remove();
@@ -182,6 +168,7 @@ if(choice=="ironman"){
 	ironmanHealth = ironmanHealth - ultronAttack;
 	$('#ironmanbox').html('Health: ' + ironmanHealth);
 	if(ironmanHealth < 0){
+		heroes.splice(heroes.indexOf('ironman'),1);
 		$('#ironman').remove();
 		$('#ironmanbox').remove();
 		$('#ironmanHealth').remove();
@@ -207,6 +194,7 @@ if(choice=="deadpool"){
 	deadpoolHealth = deadpoolHealth - ultronAttack;
 	$('#deadpoolbox').html('Health: ' + deadpoolHealth);
 	if(deadpoolHealth < 0){
+		heroes.splice(heroes.indexOf('deadpool'),1);
 		$('#deadpool').remove();
 		$('#deadpoolbox').remove();
 		$('#deadpoolHealth').remove();
@@ -403,14 +391,6 @@ $('#deadpool').on('click', function(){
 });
 
 if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
-
-
-
-
-
-
-
-
 
 });
 //Document on ready ends here!
