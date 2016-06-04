@@ -37,7 +37,6 @@ $('.boss').on('click', function(){
 	$('.hero').css('border', '');
 });
 
-if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
 // Variables + Starting Conditions
 
 
@@ -106,7 +105,6 @@ function deadpoolAttackStats(){
 	};
 	return;
 };
-if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
 
 
 // Boss Attack Sequence
@@ -145,7 +143,7 @@ if(choice==="cap"){
 		$('#capHealth').remove();
 		new Audio('letdown.mp3').play();
 	};
-	if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
+	if(capHealth <= 0 && ironmanHealth <= 0 && deadpoolHealth <= 0){location.replace('loss.html');};
 	});
 	
 };
@@ -171,7 +169,7 @@ if(choice==="ironman"){
 		$('#ironmanHealth').remove();
 		new Audio('impossible2.mp3').play();
 	};
-	
+	if(capHealth <= 0 && ironmanHealth <= 0 && deadpoolHealth <= 0){location.replace('loss.html');};
 });
 
 };
@@ -197,6 +195,7 @@ if(choice==="deadpool"){
 		$('#deadpoolHealth').remove();
 		new Audio('wrongButton.mp3').play();
 		};
+		if(capHealth <= 0 && ironmanHealth <= 0 && deadpoolHealth <= 0){location.replace('loss.html');};
 	});
 	
 };
@@ -385,8 +384,6 @@ $('#deadpool').on('click', function(){
 			return;
 	};
 });
-
-if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
 
 });
 //Document on ready ends here!

@@ -37,7 +37,6 @@ $('.boss').on('click', function(){
 	$('.hero').css('border', '');
 });
 
-if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
 // Variables + Starting Conditions: End
 
 
@@ -106,7 +105,6 @@ function deadpoolAttackStats(){
 	};
 	return;
 };
-if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
 
 
 // Boss Attack Sequence
@@ -145,12 +143,12 @@ if(choice==="cap"){
 		$('#capHealth').remove();
 		new Audio('letdown.mp3').play();
 	};
-	if(capHealth <=0 && ironmanHealth <=0 && deadpoolHealth <=0){location.replace('loss.html');};
+	if(capHealth <= 0 && ironmanHealth <= 0 && deadpoolHealth <= 0){location.replace('loss.html');};
 	});
 	
 };
 
-if(choice=="ironman"){
+if(choice==="ironman"){
 	$('#attackMessage').show(1000, function(){
 	document.getElementById('ultronAttack').play();
 	if(ultronCrit <= 15){
@@ -171,12 +169,12 @@ if(choice=="ironman"){
 		$('#ironmanHealth').remove();
 		new Audio('impossible2.mp3').play();
 	};
-	
+	if(capHealth <= 0 && ironmanHealth <= 0 && deadpoolHealth <= 0){location.replace('loss.html');};
 });
 
 };
 
-if(choice=="deadpool"){
+if(choice==="deadpool"){
 	$('#attackMessage').show(1000, function(){
 	document.getElementById('ultronAttack').play();
 	if(ultronCrit <= 15){
@@ -197,6 +195,7 @@ if(choice=="deadpool"){
 		$('#deadpoolHealth').remove();
 		new Audio('wrongButton.mp3').play();
 		};
+		if(capHealth <= 0 && ironmanHealth <= 0 && deadpoolHealth <= 0){location.replace('loss.html');};
 	});
 	
 };
@@ -287,6 +286,7 @@ $('#ironman').on('click', function(){
 			};
 			if(ultronHealth1 <=0 && ultronHealth2 <=0 && ultronHealth3 <=0){location.replace('win.html');};
 			return;
+
 						};
 	if(question2==2){
 			ironmanAttackStats();
@@ -386,8 +386,6 @@ $('#deadpool').on('click', function(){
 			return;
 	};
 });
-
-if(window.capHealth <=0 && window.ironmanHealth <=0 && window.deadpoolHealth <=0){location.replace('loss.html');};
 
 });
 //Document on ready ends here!
