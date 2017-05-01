@@ -18,23 +18,24 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
 
     <!--CSS-->
-    <link rel="stylesheet" href="jquery.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
  </head>
 
 <body>
 
-<audio id="themeMusic" src="avengers_theme.mp3" autoplay loop></audio>
+<audio id="themeMusic" src="music/avengers_theme.mp3" autoplay loop></audio>
 
 
 <div class="container">
+
     <!--Background Pic & Sprites-->
-  <img class="background" src="background.jpeg" />
-  <img id="ultron1" class="boss" src="ultron.jpeg" />
-  <img id="ultron2" class="boss" src="ultron.jpeg" />
-  <img id="ultron3" class="boss" src="ultron.jpeg" />
-  <img id="cap" class="hero" src="cap.jpeg" />
-  <img id="ironman" class="hero" src="ironman.jpeg" />
-  <img id="deadpool" class="hero" src="deadpool.jpeg" />
+  <img class="background" src="pictures/background.jpeg" />
+  <img id="ultron1" class="boss" src="pictures/ultron.jpeg" />
+  <img id="ultron2" class="boss" src="pictures/ultron.jpeg" />
+  <img id="ultron3" class="boss" src="pictures/ultron.jpeg" />
+  <img id="cap" class="hero" src="pictures/cap.jpeg" />
+  <img id="ironman" class="hero" src="pictures/ironman.jpeg" />
+  <img id="deadpool" class="hero" src="pictures/deadpool.jpeg" />
 
 
   <!--Attack Pop Up-->
@@ -58,21 +59,37 @@
   <div id="deadpoolbox" class="box"></div>
 
   <!--Audio-->
-  <audio id="capAttack"><source src="shieldslash.mp3"></audio>
-  <audio id="capCrit"><source src="chargingstar.mp3"></audio>
-  <audio id="ironmanAttack"><source src="unibeam.mp3"></audio>
-  <audio id="ironmanCrit"><source src="protoncannon.mp3"></audio>
-  <audio id="deadpoolAttack"><source src="bangbang.mp3" type="audio/mp3"></audio>
-  <audio id="deadpoolCrit"><source src="yomama.mp3"></audio>
-  <audio id="ultronAttack"><source src="laugh.mp3"></audio>
-  <audio id="ultronCrit"><source src="nostrings.mp3"></audio>
+  <audio id="capAttack"><source src="music/shieldslash.mp3"></audio>
+  <audio id="capCrit"><source src="music/chargingstar.mp3"></audio>
+  <audio id="ironmanAttack"><source src="music/unibeam.mp3"></audio>
+  <audio id="ironmanCrit"><source src="music/protoncannon.mp3"></audio>
+  <audio id="deadpoolAttack"><source src="music/bangbang.mp3"></audio>
+  <audio id="deadpoolCrit"><source src="music/yomama.mp3"></audio>
+  <audio id="ultronAttack"><source src="music/laugh.mp3"></audio>
+  <audio id="ultronCrit"><source src="music/nostrings.mp3"></audio>
   
-
+  <!--Modal-->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style="color: black;">Choose a Difficulty:</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+          <button class="btn btn-success" id="easy">Easy</button>
+          <button class="btn btn-warning" id="medium">Medium</button>
+          <button class="btn btn-danger" id="hard">Hard</button>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
   
 </div>
 
 <!--Javascript-->
-<script src="jquery.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>

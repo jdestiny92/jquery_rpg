@@ -7,15 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap: Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <!-- Bootstrap: Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-
-    <!-- Bootstrap: Latest compiled and minified JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
 
     <!--CSS-->
     <style>
@@ -23,23 +14,24 @@
     img {position: relative; background-size: cover; width:100%; height:100%;}
     body{background-color: black};
     </style>
+
  </head>
+
+
 
 <body>
 
-<audio id="themeMusic" src="extinction.mp3" autoplay loop></audio>
+<audio id="themeMusic" src="music/extinction.mp3" autoplay loop></audio>
 
-
-
-<img src="ultron_background.jpg" />
+<img src="pictures/ultron_background.jpg" />
 
 <script>
  setTimeout(function retry() {
         var retry = confirm('Retry?');
         if(retry==true){
-            location.replace('startpage.html');
+            location.replace('index.html');
         };
-    }, 7000);
+    }, 15000);
 
     retry();
 </script>

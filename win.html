@@ -7,36 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap: Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <!-- Bootstrap: Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-
-    <!-- Bootstrap: Latest compiled and minified JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
-
     <!--CSS-->
     <style>
     
     img {position: relative; width: 80%;}
     </style>
+
  </head>
+
+
 
 <body>
 
-<audio id="themeMusic" src="champions.mp3" autoplay loop></audio>
+<audio id="themeMusic" src="music/champions.mp3" autoplay loop></audio>
 
-
-
-<img src="deadpool_background.jpg" />
+<img src="pictures/deadpool_background.jpg" />
 
 <script>
     setTimeout(function retry() {
         var retry = confirm('Play Again?');
         if(retry==true){
-            location.replace('startpage.html');
+            location.replace('index.html');
         };
     }, 7000);
 
